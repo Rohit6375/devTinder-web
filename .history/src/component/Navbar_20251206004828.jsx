@@ -9,9 +9,9 @@ const Navbar = () => {
     
       <div className="navbar bg-base-300 shadow-sm">
   <div className="flex-1">
-    <Link to="/" className="btn btn-ghost text-xl">DevTinder</Link>
+    <a className="btn btn-ghost text-xl">DevTinder</a>
   </div>
-{user &&  (<div className="flex gap-2 items-center"> Welcome, {user.firstName}
+{user &&  (<div className="flex gap-2 items-center"> Welcome, {user.firstName}, {user.lastName}
     <div className="dropdown dropdown-end mx-4">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">

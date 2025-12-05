@@ -10,7 +10,6 @@ import Login from './component/Login'
 import Profile from './component/Profile'
 import { Provider } from 'react-redux'
 import appStore from './utils/appStore'
-import Feed from './component/Feed'
 
 function App() {
   const [count, setCount] = useState(0)

@@ -9,7 +9,7 @@ const Navbar = () => {
     
       <div className="navbar bg-base-300 shadow-sm">
   <div className="flex-1">
-    <Link to="/" className="btn btn-ghost text-xl">DevTinder</Link>
+    <a className="btn btn-ghost text-xl">DevTinder</a>
   </div>
 {user &&  (<div className="flex gap-2 items-center"> Welcome, {user.firstName}
     <div className="dropdown dropdown-end mx-4">

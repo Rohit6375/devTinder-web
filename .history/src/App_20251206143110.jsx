@@ -11,7 +11,6 @@ import Profile from './component/Profile'
 import { Provider } from 'react-redux'
 import appStore from './utils/appStore'
 import Feed from './component/Feed'
-import Error from './component/Error'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,7 +25,7 @@ function App() {
 
       <Route path='/login' element={<Login/>}/>
       <Route path='/profile' element={<Profile/>}/>
-      <Route path="*" element={<Error/>} />
+      <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
     </BrowserRouter>

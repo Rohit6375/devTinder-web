@@ -1,18 +1,15 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import { BASE_URL } from '../utils/constans';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const Login = () => {
     const[emailId,setEmailId]=useState("morya@gmail.com");
     const[password,setPassword]=useState("Rohit@123");
-    const[error,setError]=useState("");
     const dispatch=useDispatch();
     const navigate=useNavigate();
-
 
       const user = useSelector((store) => store.user);
 
@@ -35,8 +32,8 @@ const Login = () => {
            dispatch(addUser(res.data));
            navigate("/");
         } catch (error) {
-          setError(error?.response?.data);
-            
+          
+            console.log("ERROR "+error.message);
         }
         
     }
@@ -74,7 +71,7 @@ const Login = () => {
         />
     </label>
 </div>
-<p className='text-red-500'>{error}</p>
+
     <div className="card-actions justify-center">
       <button className="btn btn-primary m-2" onClick={handleLogin}>Login</button>
     </div>

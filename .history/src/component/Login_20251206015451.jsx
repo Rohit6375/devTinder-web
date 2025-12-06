@@ -36,7 +36,7 @@ const Login = () => {
            navigate("/");
         } catch (error) {
           setError(error?.response?.data);
-            
+            console.log(error);
         }
         
     }

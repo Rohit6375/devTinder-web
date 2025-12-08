@@ -1,14 +1,13 @@
 import React from 'react'
 
 const UserCard = ({user}) => {
-   if(!user) return <h1>no user is present</h1>
+   
     const {firstName,lastName,gender,age,photoUrl,about}=user;
-    
-  return ( user &&
-    <div className="card bg-base-300 w-96 shadow-md rounded-xl">
+  return (
+    <div className="card bg-base-300 w-96 shadow-md rounded-4xl">
   <figure>
     <img
-      src={photoUrl}
+      src="https://rajenengg.com/wp-content/uploads/2020/05/nobody.jpg"
       alt="photo" />
   </figure>
   <div className="card-body">

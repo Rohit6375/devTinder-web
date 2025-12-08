@@ -18,7 +18,7 @@ const Footer = () => {
     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
     
   </aside>
-  <div className='-ml-6'>
+  <div className=''>
      <p className='text-md text-neutral-content '>Made with ❤️ by Rohit</p>
 
   </div>

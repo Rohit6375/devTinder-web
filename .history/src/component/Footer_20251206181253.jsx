@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="footer sm:footer-horizontal bg-neutral justify-between text-neutral-content items-center fixed bottom-0 p-4">
+    <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content items-center fixed bottom-0 p-4">
   <aside className="grid-flow-col items-center">
     <svg
       width="36"
@@ -18,7 +18,7 @@ const Footer = () => {
     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
     
   </aside>
-  <div className='-ml-6'>
+  <div className='ml-8 items-center'>
      <p className='text-md text-neutral-content '>Made with ❤️ by Rohit</p>
 
   </div>

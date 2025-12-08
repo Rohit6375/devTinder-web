@@ -18,10 +18,10 @@ const Footer = () => {
     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
     
   </aside>
-  <div className='-ml-6'>
+  {/* <div className='-ml-6'>
      <p className='text-md text-neutral-content '>Made with ❤️ by Rohit</p>
 
-  </div>
+  </div> */}
 
   <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
     <a>

@@ -13,7 +13,6 @@ import appStore from './utils/appStore'
 import Feed from './component/Feed'
 import Error from './component/Error'
 import { Connections } from './component/Connections'
-import Requests from './component/Requests'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,7 +28,6 @@ function App() {
       <Route path='/login' element={<Login/>}/>
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/connections' element={<Connections/>}/>
-      <Route path='/requests' element={<Requests/>}/>
       <Route path="*" element={<Error/>} />
       </Route>
     </Routes>

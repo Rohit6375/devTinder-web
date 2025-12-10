@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react'
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constans';
@@ -10,7 +11,22 @@ const Navbar = () => {
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const requests=useSelector((store)=>store.requests);
-    const length=requests?.length||0;
+const length = requests?.length || 0;
+ useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        const res = await axios.get(
+          BASE_URL + "/user/requests/received",
+          { withCredentials: true }
+        );
+        dispatch(addRequests(res.data.data));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchRequests();
+  }, [dispatch]);
     const handleLogout=async()=>{
       try {
         const res=await axios.post(BASE_URL+"/logout",{},{withCredentials:true});

@@ -1,19 +1,15 @@
 import axios from 'axios';
 import React from 'react'
 import { BASE_URL } from '../utils/constans';
-import { useDispatch } from 'react-redux';
-import { removeUserFromFeed } from '../utils/feedSlice';
 
 const UserCard = ({user}) => {
-  const dispatch=useDispatch();
    if(!user) return ;
-   if(user.length<=0) return <h1 className="flex justify-center my-10">No more users found</h1>
-    const {_id,firstName,lastName,gender,age,photoUrl,about}=user;
+   if(user.length<=0) return <h1 className="flex justify-center my-10">no user is present</h1>
+    const {firstName,lastName,gender,age,photoUrl,about}=user;
 
     const handleSendRequest=async(status,_id)=>{
       try {
-        const res=await axios.post(BASE_URL+"/request/send/"+status+"/"+_id,{},{withCredentials:true});
-        dispatch(removeUserFromFeed(_id));
+        const res=await axios.post(BASE_URL+"/request/send/"+status+"/"+_id);
          console.log(res);
       } catch (error) {
         console.log(error);
@@ -32,8 +28,8 @@ const UserCard = ({user}) => {
   {age && gender &&  <p>{age+", "+gender}</p>} 
     <p>{about}</p>
     <div className="card-actions justify-center">
-      <button className="btn btn-primary rounded-xl" onClick={()=>handleSendRequest("ignored",_id)}>Ignore</button>
-      <button className="btn btn-secondary rounded-xl" onClick={()=>handleSendRequest("interested",_id)}>Interested</button>
+      <button className="btn btn-primary rounded-xl">Ignore</button>
+      <button className="btn btn-secondary rounded-xl">Interested</button>
     </div>
   </div>
 </div>

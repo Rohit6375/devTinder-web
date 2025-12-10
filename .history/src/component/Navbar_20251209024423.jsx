@@ -9,8 +9,7 @@ const Navbar = () => {
     const user=useSelector((store)=>store.user);
     const dispatch=useDispatch();
     const navigate=useNavigate();
-    const requests=useSelector((store)=>store.requests);
-    const length=requests?.length||0;
+    
     const handleLogout=async()=>{
       try {
         const res=await axios.post(BASE_URL+"/logout",{},{withCredentials:true});
@@ -45,9 +44,6 @@ const Navbar = () => {
           </Link>
         </li>
         <li><Link to="/connections">Connections</Link></li>
-        <li><Link to="/requests">Requests
-        <span className="badge">{length}</span>
-        </Link></li>
         <li onClick={handleLogout}><a>Logout</a></li>
       </ul>
     </div>

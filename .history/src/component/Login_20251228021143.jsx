@@ -20,7 +20,12 @@ const Login = () => {
 
   const user = useSelector((store) => store.user);
 
- 
+  // 🚀 Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
 
   const handleLogin = async () => {
     try {
@@ -36,7 +41,7 @@ const Login = () => {
       );
       // console.log(res.data);
       dispatch(addUser(res.data));
-     return navigate("/");
+      navigate("/");
     } catch (error) {
       setError(error?.response?.data);
     }
@@ -44,7 +49,7 @@ const Login = () => {
 
   const handleSignUP=async()=>{
      try {
-      
+      console.log("signup clicked")
       const res=await axios.post(BASE_URL+"/signup",{firstName,lastName,emailId,password},{withCredentials:true});
       dispatch(addUser(res?.data?.data));
       navigate("/profile");

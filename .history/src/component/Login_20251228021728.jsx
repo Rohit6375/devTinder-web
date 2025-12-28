@@ -20,7 +20,12 @@ const Login = () => {
 
   const user = useSelector((store) => store.user);
 
- 
+  // 🚀 Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
 
   const handleLogin = async () => {
     try {

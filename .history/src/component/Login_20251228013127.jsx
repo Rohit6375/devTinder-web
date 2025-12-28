@@ -20,7 +20,12 @@ const Login = () => {
 
   const user = useSelector((store) => store.user);
 
- 
+  // 🚀 Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
 
   const handleLogin = async () => {
     try {
@@ -36,22 +41,14 @@ const Login = () => {
       );
       // console.log(res.data);
       dispatch(addUser(res.data));
-     return navigate("/");
+      navigate("/");
     } catch (error) {
       setError(error?.response?.data);
     }
   };
 
   const handleSignUP=async()=>{
-     try {
-      
-      const res=await axios.post(BASE_URL+"/signup",{firstName,lastName,emailId,password},{withCredentials:true});
-      dispatch(addUser(res?.data?.data));
-      navigate("/profile");
-     } catch (error) {
-      // setError(error);
-      setError(error?.response?.data);
-     }
+
   }
 
   return (
@@ -115,7 +112,7 @@ const Login = () => {
               {isLoginForm ? "Login" : "SingUp"}
             </button>
           </div>
-          <p className="mx-auto cursor-pointer" onClick={()=>setIsLoginForm(value=>!value)}>{isLoginForm ?  <>
+          <p className="mx-auto cursor-pointer" onClick={()=>setIsLoginForm(!isLoginForm)}>{isLoginForm ?  <>
       New User? <span className="underline">SignUp here</span>
     </> :
       <>

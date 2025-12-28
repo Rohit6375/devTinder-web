@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailId] = useState("morya@gmail.com");
+  const [password, setPassword] = useState("Rohit@123");
   const[firstName,setFirstName]=useState("");
   const[lastName,setLastName]=useState("");
   const [error, setError] = useState("");
@@ -20,7 +20,12 @@ const Login = () => {
 
   const user = useSelector((store) => store.user);
 
- 
+  // 🚀 Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
 
   const handleLogin = async () => {
     try {
@@ -36,50 +41,38 @@ const Login = () => {
       );
       // console.log(res.data);
       dispatch(addUser(res.data));
-     return navigate("/");
+      navigate("/");
     } catch (error) {
       setError(error?.response?.data);
     }
   };
 
-  const handleSignUP=async()=>{
-     try {
-      
-      const res=await axios.post(BASE_URL+"/signup",{firstName,lastName,emailId,password},{withCredentials:true});
-      dispatch(addUser(res?.data?.data));
-      navigate("/profile");
-     } catch (error) {
-      // setError(error);
-      setError(error?.response?.data);
-     }
-  }
-
   return (
     <div className="flex justify-center my-10">
       <div className="card bg-base-300 text-primary-content w-96 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title justify-center">{isLoginForm ? "Login" : "SingUp"}</h2>
+          <h2 className="card-title justify-center">Login</h2>
           <div className="flex flex-col ">
-            {!isLoginForm && <><label className="form-control w-full max-w-xs py-4">
+            {isLoginForm && <><label className="form-control w-full max-w-xs py-4">
               <div className="label">
-                <span className="label-text">First Name</span>
+                <span className="label-text">Email Id?</span>
               </div>
               <input
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                placeholder="John"
+                placeholder="john@gmail.com"
                 className="input input-bordered rounded-xl w-full max-w-xs py-5"
               />
             </label> <label className="form-control w-full max-w-xs py-4">
               <div className="label">
-                <span className="label-text">Last Name</span>
+                <span className="label-text">Email Id?</span>
               </div>
               <input
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                placeholder="Grey"
+                placeholder="john@gmail.com"
                 className="input input-bordered rounded-xl w-full max-w-xs py-5"
               />
             </label> </> }
@@ -111,16 +104,10 @@ const Login = () => {
           </div>
           <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center">
-            <button className="btn btn-primary m-2" onClick={isLoginForm ? handleLogin : handleSignUP}>
-              {isLoginForm ? "Login" : "SingUp"}
+            <button className="btn btn-primary m-2" onClick={handleLogin}>
+              Login
             </button>
           </div>
-          <p className="mx-auto cursor-pointer" onClick={()=>setIsLoginForm(value=>!value)}>{isLoginForm ?  <>
-      New User? <span className="underline">SignUp here</span>
-    </> :
-      <>
-      Already have an account? <span className="underline">Login here</span>
-    </>}</p>
         </div>
       </div>
     </div>

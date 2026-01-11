@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-
+import { BASE_URL } from '../../../src/utils/constans';
 
 const Login = () => {
     const[emailId,setEmailId]=useState("morya@gmail.com");
     const[password,setPassword]=useState("Rohit@123");
     const handleLogin=async()=>{
-        const res=axios.post("http://localhost:4000/login",{
+        const res=axios.post(BASE_URL+"/login",{
             emailId,
             password
         });

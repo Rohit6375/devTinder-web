@@ -249,7 +249,7 @@ const EditProfile = ({ user }) => {
       {/* FIXED WIDTH USER CARD */}
       <div className="w-[300px] ml-4">
         <UserCard
-          user={{ firstName, lastName, gender, about, age, skills, photoUrl }}
+          user={{ firstName, lastName, gender, about, age, skills, photoUrl }} isProfilePage={true}
         />
       </div>
 

@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("morya@gmail.com");
-  const [password, setPassword] = useState("Rohit@123");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
   const[firstName,setFirstName]=useState("");
   const[lastName,setLastName]=useState("");
   const [error, setError] = useState("");
@@ -20,12 +20,12 @@ const Login = () => {
 
   const user = useSelector((store) => store.user);
 
-  // 🚀 Redirect if already logged in
-  useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
-  }, [user]);
+useEffect(() => {
+  if (user) {
+    navigate("/", { replace: true });
+  }
+}, [user, navigate]);
+ 
 
   const handleLogin = async () => {
     try {
@@ -41,11 +41,23 @@ const Login = () => {
       );
       // console.log(res.data);
       dispatch(addUser(res.data));
-      navigate("/");
+     return navigate("/");
     } catch (error) {
       setError(error?.response?.data);
     }
   };
+
+  const handleSignUP=async()=>{
+     try {
+      
+      const res=await axios.post(BASE_URL+"/signup",{firstName,lastName,emailId,password},{withCredentials:true});
+      dispatch(addUser(res?.data?.data));
+      navigate("/profile");
+     } catch (error) {
+      // setError(error);
+      setError(error?.response?.data);
+     }
+  }
 
   return (
     <div className="flex justify-center my-10">
@@ -104,11 +116,16 @@ const Login = () => {
           </div>
           <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center">
-            <button className="btn btn-primary m-2" onClick={handleLogin}>
+            <button className="btn btn-primary m-2" onClick={isLoginForm ? handleLogin : handleSignUP}>
               {isLoginForm ? "Login" : "SingUp"}
             </button>
           </div>
-          <p className="text-red-500">{error}</p>
+          <p className="mx-auto cursor-pointer" onClick={()=>setIsLoginForm(value=>!value)}>{isLoginForm ?  <>
+      New User? <span className="underline">SignUp here</span>
+    </> :
+      <>
+      Already have an account? <span className="underline">Login here</span>
+    </>}</p>
         </div>
       </div>
     </div>

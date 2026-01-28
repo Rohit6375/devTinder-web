@@ -20,6 +20,11 @@ const Login = () => {
 
   const user = useSelector((store) => store.user);
 
+useEffect(() => {
+  if (user) {
+    navigate("/", { replace: true });
+  }
+}, [user, navigate]);
  
 
   const handleLogin = async () => {

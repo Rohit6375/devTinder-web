@@ -49,7 +49,7 @@ const Navbar = () => {
         <span className="badge">{length}</span>
         </Link></li>
         <li><Link to="/premium">Premium
-      
+        <span className="badge">{length}</span>
         </Link></li>
         <li onClick={handleLogout}><a>Logout</a></li>
       </ul>

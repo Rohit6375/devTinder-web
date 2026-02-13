@@ -1,0 +1,46 @@
+import React from "react";
+const Premium = () => {
+  return (
+    <div className="m-10">
+      <div className="flex max-w-2xl flex-col lg:flex-row gap-6">
+
+        {/* SILVER */}
+        <div className="card bg-base-300 rounded-box grow p-6">
+          <h2 className="text-2xl font-bold mb-4 text-center">Silver Membership</h2>
+
+          <ul className="space-y-2 mb-6 text-left mx-auto">
+            <li>✅ Messaging with connections</li>
+            <li>✅ Up to 100 connection requests</li>
+            <li>✅ Blue tick verification</li>
+            <li>✅ Valid for 3 months</li>
+          </ul>
+
+          <button className="btn btn-secondary mx-auto block">
+            Buy Silver
+          </button>
+        </div>
+
+        <div className="divider lg:divider-horizontal">OR</div>
+
+        {/* GOLD */}
+        <div className="card bg-base-300 rounded-box grow p-6">
+          <h2 className="text-2xl font-bold mb-4 text-center">Gold Membership</h2>
+
+          <ul className="space-y-2 mb-6 text-left mx-auto">
+            <li>🔥 Messaging with connections</li>
+            <li>🔥 Unlimited connection requests</li>
+            <li>🔥 Blue tick verification</li>
+            <li>🔥 Valid for 6 months</li>
+          </ul>
+
+          <button className="btn btn-primary mx-auto block">
+            Buy Gold
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default Premium;

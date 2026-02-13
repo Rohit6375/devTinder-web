@@ -1,12 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { BASE_URL } from "../utils/constans";
 const Premium = () => {
   const[isUserPremium,setIsUserPremium]=useState(false);
-  useEffect(()=>{
-    verifyPremiumUser()
-  },[]);
   const verifyPremiumUser=async()=>{
     try {
       const res=await axios.get(BASE_URL+"/premium/verify",{withCredentials:true});
@@ -44,7 +41,7 @@ const{keyId,amount,currency,orderId,notes}=order.data;
        const rzp = new window.Razorpay(options);
       rzp.open();
   }
-  return isUserPremium ? <h1 className="text-center text-xl">You are already a premium user</h1> : (
+  return (
     <div className="m-10">
       <div className="flex mx-auto max-w-6xl flex-col lg:flex-row gap-6">
 

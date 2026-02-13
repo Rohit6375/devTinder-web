@@ -44,7 +44,7 @@ const{keyId,amount,currency,orderId,notes}=order.data;
        const rzp = new window.Razorpay(options);
       rzp.open();
   }
-  return isUserPremium ? <h1 className="text-center text-xl">You are already a premium user</h1> : (
+  return (
     <div className="m-10">
       <div className="flex mx-auto max-w-6xl flex-col lg:flex-row gap-6">
 

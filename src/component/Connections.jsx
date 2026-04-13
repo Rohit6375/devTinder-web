@@ -37,7 +37,7 @@ export const Connections = () => {
         return (
           <ConnectionCard
             key={_id}
-            user={{ firstName, lastName, about, gender, age, photoUrl }}
+            user={{_id, firstName, lastName, about, gender, age, photoUrl }}
           />
         );
       })}

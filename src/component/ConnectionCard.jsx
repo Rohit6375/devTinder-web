@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link, useParams } from 'react-router-dom';
 
-const ConnectionCard = ({ user, isRequest = false, requestId,reviewRequest }) => {
-  const { firstName, lastName, about, gender, age, photoUrl } = user;
+const ConnectionCard = ({ user, isRequest = false, requestId, reviewRequest }) => {
+  const { _id, firstName, lastName, about, gender, age, photoUrl } = user;
 
   return (
-    <div className="card card-side bg-base-300 shadow-md p-2 w-[430px]">
+    <div className="card card-side flex bg-base-300 shadow-md p-2 w-[430px]">
 
       {/* USER AVATAR */}
       <div className="avatar">
@@ -16,7 +17,8 @@ const ConnectionCard = ({ user, isRequest = false, requestId,reviewRequest }) =>
         </div>
       </div>
 
-      <div className="card-body py-2 px-4">
+      {/* CARD BODY */}
+      <div className="card-body py-2 px-4 flex-1">
 
         <h2 className="card-title text-lg">
           {firstName} {lastName}
@@ -37,14 +39,14 @@ const ConnectionCard = ({ user, isRequest = false, requestId,reviewRequest }) =>
           <div className="flex gap-2 mt-2">
             <button 
               className="btn btn-primary btn-sm"
-              onClick={()=>reviewRequest("rejected",requestId)}
+              onClick={() => reviewRequest("rejected", requestId)}
             >
               Reject
             </button>
 
             <button 
               className="btn btn-secondary btn-sm"
-              onClick={()=>reviewRequest("accepted",requestId)}
+              onClick={() => reviewRequest("accepted", requestId)}
             >
               Accept
             </button>
@@ -52,6 +54,17 @@ const ConnectionCard = ({ user, isRequest = false, requestId,reviewRequest }) =>
         )}
 
       </div>
+
+      {/* MESSAGE BUTTON — ONLY WHEN NOT REQUEST */}
+      {!isRequest && (
+        <div className="flex items-center pr-3">
+        <Link to={"/chat/"+_id}> <button className="btn btn-secondary btn-sm w-20">
+            Message
+          </button>
+          </Link> 
+        </div>
+      )}
+
     </div>
   );
 };

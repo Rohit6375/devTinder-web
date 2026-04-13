@@ -22,19 +22,28 @@ export const Connections = () => {
         fetchConnections();
     },[]);
     if(!connections) return;
-    if(connections.length===0) return <h1>No connections found</h1>
-  return (
-    <div className='flex justify-center my-10'>
-        <h1 className='font-bold text-2xl'>Connections</h1>
+    if(connections.length===0) return <h1 className='flex justify-center my-10 font-bold text-xl'>No connections found</h1>
+ return (
+  <div className="flex flex-col items-center my-10 w-full">
 
-        <div>
-        {connections.map((connection)=>{
-            const{_id,firstName,lastName,about,gender,age,photoUrl}=connection;
-            return (
-                <ConnectionCard key={_id} user={{firstName,lastName,about,gender,age,photoUrl}}/>
-            )
-        })}
-        </div>
+    {/* HEADING */}
+    <h1 className="font-bold text-2xl mb-6">Connections</h1>
+
+    {/* CONNECTIONS LIST */}
+    <div className="flex flex-col items-center gap-4 w-full">
+      {connections.map((connection) => {
+        const { _id, firstName, lastName, about, gender, age, photoUrl } = connection;
+
+        return (
+          <ConnectionCard
+            key={_id}
+            user={{_id, firstName, lastName, about, gender, age, photoUrl }}
+          />
+        );
+      })}
     </div>
-  )
+
+  </div>
+);
+
 }
